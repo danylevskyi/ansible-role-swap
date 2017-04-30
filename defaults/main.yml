@@ -1,0 +1,7 @@
+---
+
+swap_path: "/swapfile"
+swap_dd_bs: 256
+swap_dd_count: 16
+swap_swappiness: 35
+swap_vfs_cache_pressure: 50

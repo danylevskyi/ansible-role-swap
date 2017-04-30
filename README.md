@@ -1,6 +1,10 @@
 # Ansible Role: Swap
 
+[![Build Status](https://travis-ci.org/danylevskyi/ansible-role-swap.svg?branch=master)](https://travis-ci.org/danylevskyi/ansible-role-swap)
+
 Configure swapfile.
+
+**NOTE:** You have to reboot your server in order to apply all configuration changes.
 
 ## Requirements
 

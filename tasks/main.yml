@@ -2,7 +2,7 @@
 
 - name: Make sure swapfile physicaly exists.
   command: "dd if=/dev/zero of={{ swap_path }} bs={{ swap_dd_bs }}M count={{ swap_dd_count }} creates={{ swap_path }}"
-  register: dd_swapfile
+  register: dd
 
 - name: Make sure swapfile has proper permissions.
   file:
@@ -11,8 +11,8 @@
 
 - name: Make sure there is swap area.
   command: "mkswap {{ swap_path }}"
-  register: mkswap_swapfile
-  when: dd_swapfile.changed
+  register: mkswap
+  when: dd.changed
 
 - name: Make sure swapfile enabled.
   command: "swapon {{ swap_path }}"

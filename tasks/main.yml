@@ -7,7 +7,7 @@
 - name: Make sure swapfile has proper permissions.
   file:
     path: "{{ swap_path }}"
-    mode: 600
+    mode: "600"
 
 - name: Make sure there is swap area.
   command: "mkswap {{ swap_path }}"

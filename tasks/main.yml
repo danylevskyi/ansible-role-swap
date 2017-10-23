@@ -24,20 +24,12 @@
     line: '{{ swap_path }}   none    swap    sw    0   0'
     state: present
 
-- name: Make sure "vm.swappiness" configured.
-  lineinfile:
-    dest: /etc/sysctl.conf
-    line: 'vm.swappiness = {{ swap_swappiness }}'
-    regexp: '^vm.swappiness[\s]?='
-    state: present
-  notify: sysctl
-  when: swap_swappiness != false
-
-- name: Make sure "vfs_cache_pressure" configured.
-  lineinfile:
-    dest: /etc/sysctl.conf
-    line: 'vm.vfs_cache_pressure = {{ swap_vfs_cache_pressure }}'
-    regexp: '^vm.vfs_cache_pressure[\s]?='
-    state: present
-  notify: sysctl
-  when: swap_vfs_cache_pressure != false
+- name: Make sure swap-related sysctl options are set.
+  sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+  with_items:
+    - name: vm.swappiness
+      value: "{{ swap_swappiness }}"
+    - name: vm.vfs_cache_pressure
+      value: "{{ swap_vfs_cache_pressure }}"

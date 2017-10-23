@@ -1,4 +1,0 @@
----
-
-- name: sysctl
-  command: sysctl -p
